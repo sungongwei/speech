@@ -57,14 +57,9 @@ else:
 app.include_router(api_router)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(add_help=True)
-    parser.add_argument(
-        "--workers", type=int, help="workers of server", default=1)
-    args = parser.parse_args()
 
     uvicorn.run(
-        "start_multi_progress_server:app",
+        "multi_server:app",
         host=config.host,
         port=config.port,
-        debug=True,
-        workers=args.workers)
+        workers=config.workers)
